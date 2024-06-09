@@ -1,0 +1,21 @@
+.todo-item{
+    display: flex;
+    align-items: center;
+}
+
+.todo-name{
+    font-size: 20px;
+    margin-right: auto;
+}
+
+.todo-button{
+    justify-self: center;
+}
+
+.todo-delet-button{
+    background-color: #f08686dc;
+}
+
+.todo-done-button{
+    background-color: #86f0bddc;
+}
