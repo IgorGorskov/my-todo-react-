@@ -1,6 +1,21 @@
+import { useState } from "react";
+
+
 export function useList() {
-  
-    const [list, setList] = useState([]);
+    const todoList = [
+      {
+        name: 'work',
+        id: crypto.randomUUID(),
+        done: false,
+    },
+    {
+        name: 'eat',
+        id: crypto.randomUUID(),
+        done: false,
+    }
+    ]
+
+    const [list, setList] = useState(todoList);
     
     function createTodoItem(name){
       const newList = [...list, {
@@ -13,15 +28,15 @@ export function useList() {
   
     
     function setTodoItem(id, newName){
-      newList = list.map(item, ()=>(
+      const newList = list.map(item, () => (
         item.id === id ? {...item, name: newName} : {item}
       ))
       setList(newList)
     }
     
-    function toggleTodoItem(id){
-      const newList = list.map(item, ()=>(
-        item.id === id ? {...item, toggle: !item.toggle} : {item}
+    function doneTodoItem(id){
+      const newList = list.map(item => (
+        item.id === id ? {...item, done: !item.done} : item
       ))
       setList(newList)
     }
@@ -35,7 +50,7 @@ export function useList() {
       list,
       createTodoItem,
       setTodoItem,
-      toggleTodoItem,
+      doneTodoItem,
       deleteTodoItem,
     }
   }

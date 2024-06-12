@@ -1,30 +1,22 @@
-import React, { FC } from "react"
+import React from "react"
 import { TodoItem } from "../TodoItem/TodoItem"
 import "./TodoList.css"
 
 
 
-export interface TodoList {
-    todoList: TodoItem[];
-}
-
-export const todoList: TodoItem[] = [
-    {
-        name: 'work',
-        id: crypto.randomUUID()
-    },
-    {
-        name: 'eat',
-        id: crypto.randomUUID()
-    }
-]
-
-export const TodoList: FC<TodoList> = ({todoList}) => {
+export const TodoList = ({todoList, onTodoSet, onTodoDone, onTodoDelete}) => {
     return(
         <ul className="todo-list">
             {todoList.map((item) =>(
                 <li key={item.id}>
-                    <TodoItem name = {item.name}/>
+                    <TodoItem 
+                        name = {item.name}
+                        id = {item.id}
+                        done={item.done}
+                        onTodoSet={onTodoSet}
+                        onTodoDelete={onTodoDelete}
+                        onTodoDone={onTodoDone}
+                    />
                 </li>)
             )}
         </ul>

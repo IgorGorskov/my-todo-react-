@@ -1,11 +1,22 @@
+import { useList } from "../../useLIst"
 import "./TodoForm.css"
-import React from "react"
+import React, { useState } from "react"
 
-export const TodoForm = () => {
+
+export const TodoForm = ({onCreate}) => {
+    // const handleCreate = () => {
+    //     onCreate(value)
+    // }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        onCreate(value)
+        setValue('')
+    }
+    const [value, setValue] = useState('')
     return (
-        <div>
-            <input type="text" />
-            <button>Новое дело</button>
-        </div>
+        <form onSubmit={handleSubmit}> 
+            <input tabIndex={-1}  type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
+            <button >Новое дело</button>
+        </form>
     )
 }
