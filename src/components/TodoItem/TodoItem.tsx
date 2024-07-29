@@ -24,10 +24,10 @@ export const TodoItem = ({name, id, done, onTodoSet, onTodoDone, onTodoDelete}) 
 
 
     return (
-        <div className= {done ? 'done todo-item' : "todo-item"} >
-            <h2 className="todo-name">{name}</h2>
-            <button onClick={handleDone} className="todo-done-button todo-button">Сделано</button>
-            <button onClick={handleDelete} className="todo-delet-button todo-button">Удалить</button>
+        <div className= {done ? 'done item' : "item"} >
+            <h2 className="item__name">{name}</h2>
+            <button onClick={handleDone} className="item__done-button item__button">Сделано</button>
+            <button onClick={handleDelete} className="item__delet-button item__button">Удалить</button>
         </div>
     )
         

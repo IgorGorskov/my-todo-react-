@@ -1,22 +1,26 @@
-.todo-item{
+.item{
     display: flex;
     align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid gray;
 }
 
-.todo-name{
+.item__name{
     font-size: 20px;
     margin-right: auto;
 }
 
-.todo-button{
+.item__button{
     justify-self: center;
 }
 
-.todo-delet-button{
+.item__delet-button{
     background-color: #f08686dc;
 }
 
-.todo-done-button{
+.item__done-button{
+    margin-right: 10px;
     background-color: #86f0bddc;
 }
 

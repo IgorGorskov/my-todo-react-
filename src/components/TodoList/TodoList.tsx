@@ -6,7 +6,7 @@ import "./TodoList.css"
 
 export const TodoList = ({todoList, onTodoSet, onTodoDone, onTodoDelete}) => {
     return(
-        <ul className="todo-list">
+        <ul className="list">
             {todoList.map((item) =>(
                 <li key={item.id}>
                     <TodoItem 
