@@ -3,6 +3,9 @@ import { TodoItem } from "../TodoItem/TodoItem"
 import "./TodoList.css"
 
 
+export interface TodoList{
+    list: TodoItem[]
+}
 
 export const TodoList = ({todoList, onTodoSet, onTodoDone, onTodoDelete}) => {
     return(

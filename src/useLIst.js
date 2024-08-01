@@ -1,19 +1,7 @@
 import { useState } from "react";
 
 
-export function useList() {
-    const todoList = [
-      {
-        name: 'work',
-        id: crypto.randomUUID(),
-        done: false,
-    },
-    {
-        name: 'eat',
-        id: crypto.randomUUID(),
-        done: false,
-    }
-    ]
+export function useList(todoList) {
 
     const [list, setList] = useState(todoList);
     
