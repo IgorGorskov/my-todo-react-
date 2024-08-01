@@ -1,18 +1,21 @@
 import { useState } from "react";
+import { getTodo, postTodo } from "./api/Todo";
 
 
 export function useList(todoList) {
 
     const [list, setList] = useState(todoList);
     
-    function createTodoItem(name){
-      const newList = [...list, {
+    
+
+    async function createTodoItem(name){
+      const newItem = {
         name: name,
         id: crypto.randomUUID(),
-        toggle: false,
-    }]
-      setList(newList);
-  }
+        done: false,
+      }
+      postTodo(newItem)
+    }
   
     
     function setTodoItem(id, newName){

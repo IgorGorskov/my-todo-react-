@@ -1,8 +1,8 @@
 import { TodoItem } from "../components/TodoItem/TodoItem";
 import { TodoList } from "../components/TodoList/TodoList";
 
-export async function createTodo(item: TodoItem): Promise<void>{
-    return fetch('https://jsonplaceholder.typicode.com/posts', {
+export async function postTodo(item: TodoItem): Promise<void>{
+    return fetch('http://localhost:3000/todos', {
       method: 'POST',
       body: JSON.stringify({
         name: item.name,
@@ -14,7 +14,6 @@ export async function createTodo(item: TodoItem): Promise<void>{
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
 }
 
 export async function getTodo():Promise<TodoList | void> {

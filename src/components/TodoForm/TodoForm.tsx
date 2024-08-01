@@ -1,21 +1,34 @@
-import { useList } from "../../useLIst"
 import "./TodoForm.css"
 import React, { useState } from "react"
 
 
-export const TodoForm = ({onCreate}) => {
-    // const handleCreate = () => {
-    //     onCreate(value)
-    // }
-    const handleSubmit = (event) => {
-        if(value.trim() != ""){
-            event.preventDefault();
-            onCreate(value)
+import { useMutation } from "@tanstack/react-query"
+import { queryClient } from "../../api/queryClient"
+import { postTodo } from '../../api/Todo'
+
+export const TodoForm = () => {
+
+    const [value, setValue] = useState('')
+
+    const postQuery = useMutation({
+        mutationFn: () => {
+            const todo = { name: value.trim(), id: crypto.randomUUID(), done: false };
+            return postTodo(todo)
+        },
+        mutationKey: ["todo"],
+        onSuccess: () => {
+            queryClient.invalidateQueries()
             setValue('')
         }
-        return
+    }, queryClient)
+
+    const handleSubmit = (event) => {
+        if(value.trim() !== ""){
+            event.preventDefault();
+            postQuery.mutate();
+        }
     }
-    const [value, setValue] = useState('')
+
     return (
         <form className="form" onSubmit={handleSubmit}> 
             <input className="form__input" placeholder="Новое дело" tabIndex={-1}  type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
