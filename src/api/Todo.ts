@@ -29,3 +29,17 @@ export async function deleteTodo(id: number): Promise<Response>{
     },
   })
 }
+
+export async function doneTodo(id: number, name?: string, done?: boolean): Promise<Response>{
+  return fetch(`http://localhost:3000/todos/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      name,
+      id,
+      done
+    })
+  }).then((response) => response.json())
+}
