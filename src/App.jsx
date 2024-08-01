@@ -17,7 +17,7 @@ function App() {
   }
   if (todoList.status === "success"){
     return <div>
-    <TodoForm onCreate={createTodoItem}/>
+    <TodoForm/>
     <TodoList 
       todoList={todoList.data}
       onTodoSet={setTodoItem}

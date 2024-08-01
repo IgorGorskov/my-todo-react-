@@ -12,11 +12,20 @@ export async function postTodo(item: TodoItem): Promise<void>{
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json())
 }
 
 export async function getTodo():Promise<TodoList | void> {
   return fetch('http://localhost:3000/todos')
   .then((response) => response.json())
+}
+
+
+export async function deleteTodo(id: number): Promise<Response>{
+  return fetch(`http://localhost:3000/todos/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
 }

@@ -1,5 +1,8 @@
 import React from "react"
 import "./TodoItem.css"
+import { deleteTodo } from "../../api/Todo"
+import { useMutation } from "@tanstack/react-query"
+import { queryClient } from "../../api/queryClient"
 
 export interface TodoItem {
     name: string,
@@ -10,9 +13,17 @@ export interface TodoItem {
 
   
 
-export const TodoItem = ({name, id, done, onTodoSet, onTodoDone, onTodoDelete}) =>{
+export const TodoItem = ({name, id, done, onTodoSet, onTodoDone}) =>{
+    const deleteQuery = useMutation({
+        mutationFn: () => deleteTodo(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["todo"]})
+            console.log("del")
+        }
+    }, queryClient)
+
     const handleDelete = () => {
-        onTodoDelete(id)
+        deleteQuery.mutate()
     }
     const handleSet = (event) => {
         onTodoSet(id, event.value.trim())

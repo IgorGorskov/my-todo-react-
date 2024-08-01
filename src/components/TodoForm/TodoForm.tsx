@@ -15,9 +15,8 @@ export const TodoForm = () => {
             const todo = { name: value.trim(), id: crypto.randomUUID(), done: false };
             return postTodo(todo)
         },
-        mutationKey: ["todo"],
         onSuccess: () => {
-            queryClient.invalidateQueries()
+            queryClient.invalidateQueries({queryKey: ["todo"]})
             setValue('')
         }
     }, queryClient)
