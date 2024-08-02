@@ -7,7 +7,7 @@ export interface TodoList{
     list: TodoItem[]
 }
 
-export const TodoList = ({todoList, onTodoSet}) => {
+export const TodoList = ({todoList}) => {
     const [filter, setFilter] = useState("all")
 
     function toFilter(item: TodoItem) {
@@ -45,7 +45,6 @@ export const TodoList = ({todoList, onTodoSet}) => {
                         name = {item.name}
                         id = {item.id}
                         done={item.done}
-                        onTodoSet={onTodoSet}
                     />
                 </li>)
             )}

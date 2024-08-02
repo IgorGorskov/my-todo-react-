@@ -13,7 +13,7 @@ export interface TodoItem {
 
   
 
-export const TodoItem = ({name, id, done, onTodoSet}) =>{
+export const TodoItem = ({name, id, done}) =>{
     const deleteQuery = useMutation({
         mutationFn: () => deleteTodo(id),
         onSuccess: () => {
@@ -25,10 +25,6 @@ export const TodoItem = ({name, id, done, onTodoSet}) =>{
         deleteQuery.mutate()
     }
 
-
-    const handleSet = (event) => {
-        onTodoSet(id, event.value.trim())
-    }
 
     const doneQuery = useMutation({
         mutationFn: () => doneTodo(id),
